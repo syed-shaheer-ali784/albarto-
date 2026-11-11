@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | ALBERTO CLOCKS</title>
+  <link rel="stylesheet" href="checkout.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- LAMP: always visible -->
+  <div class="lamp-overlay" id="lampOverlay">
+    <div class="lamp-message">
+      <p>ALBERTO CLOCKS</p>
+      <h1>Luxury, In Every Second</h1>
+      <span id="lampInstruction">Pull the black rope to turn on the light</span>
+    </div>
+
+    <div class="lamp-scene">
+      <div class="lamp-light" id="lampLight"></div>
+
+      <div class="table-lamp">
+        <div class="lamp-shade"></div>
+        <div class="lamp-neck"></div>
+        <div class="lamp-joint"></div>
+        <div class="lamp-base"></div>
+      </div>
+
+      <div class="lamp-table">
+        <div class="table-top"></div>
+        <div class="table-leg left-leg"></div>
+        <div class="table-leg right-leg"></div>
+      </div>
+
+      <div class="rope-area" id="ropeArea" aria-label="Pull the lamp rope">
+        <div class="lamp-cord" id="lampCord"></div>
+        <div class="rope-knob"></div>
+      </div>
+    </div>
+
+    <p class="pull-hint">PULL GENTLY · PULL AGAIN TO TURN OFF</p>
+  </div>
+
+  <!-- Existing checkout content -->
+  <div class="site-content" id="siteContent" inert>
+    <header class="topbar">
+      <a href="index.html" class="logo">ALBERTO</a>
+      <span class="topbar-title">SECURE CHECKOUT</span>
+      <nav>
+        <a href="index.html">HOME</a>
+        <a href="collection.html">COLLECTION</a>
+        <a href="about.html">ABOUT</a>
+        <a href="cart.html">CART</a>
+        <a href="login.html" class="active">login</a>
+        <a href="signup.html">Signup</a>
+      </nav>
+    </header>
+
+    <main class="checkout-container">
+      <section class="checkout-heading">
+        <p class="eyebrow">YOUR LUXURY EXPERIENCE</p>
+        <h1>Complete Your Order</h1>
+        <p>Every second deserves something special.</p>
+      </section>
+
+      <div class="checkout-grid">
+        <section class="checkout-panel">
+          <h2>Shipping Details</h2>
+
+          <form id="checkoutForm">
+            <label for="customerName">Full Name</label>
+            <input id="customerName" name="customerName" type="text" placeholder="Enter your full name" required>
+
+            <label for="customerEmail">Email Address</label>
+            <input id="customerEmail" name="customerEmail" type="email" placeholder="you@example.com" required>
+
+            <label for="customerPhone">Phone Number</label>
+            <input id="customerPhone" name="customerPhone" type="tel" placeholder="03XXXXXXXXX" pattern="03[0-9]{9}" required>
+
+            <label for="customerAddress">Complete Address</label>
+            <textarea id="customerAddress" name="customerAddress" rows="3" placeholder="House, street, area" required></textarea>
+
+            <div class="field-row">
+              <div>
+                <label for="customerCity">City</label>
+                <input id="customerCity" name="customerCity" type="text" placeholder="Your city" required>
+              </div>
+              <div>
+                <label for="customerPostal">Postal Code</label>
+                <input id="customerPostal" name="customerPostal" type="text" placeholder="Optional">
+              </div>
+            </div>
+
+            <h2 class="payment-heading">Payment Method</h2>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="Cash on Delivery" checked>
+              <span>
+                <strong>Cash on Delivery</strong>
+                <small>Pay when your order arrives.</small>
+              </span>
+            </label>
+
+            <p class="demo-note">Demo checkout: orders are saved in this browser only.</p>
+            <button class="place-order" type="submit">PLACE ORDER</button>
+          </form>
+        </section>
+
+        <aside class="checkout-panel order-panel">
+          <h2>Your Order</h2>
+          <div id="orderItems" class="order-items">
+            <p class="empty-cart">Your cart is empty. Add a watch from the collection first.</p>
+          </div>
+
+          <div class="price-line">
+            <span>Subtotal</span>
+            <strong id="subtotal">Rs. 0</strong>
+          </div>
+          <div class="price-line">
+            <span>Delivery</span>
+            <strong id="delivery">Free</strong>
+          </div>
+          <div class="price-line total-line">
+            <span>Total</span>
+            <strong id="total">Rs. 0</strong>
+          </div>
+          <a href="collection.html" class="back-link">← Continue Shopping</a>
+        </aside>
+      </div>
+
+      <footer>
+        <p>ALBERTO CLOCKS</p>
+        <span>TIMELESS DESIGN. LASTING IMPRESSION.</span>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Order confirmation -->
+  <div class="success-overlay" id="successOverlay" hidden>
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <p class="eyebrow">ORDER RECEIVED</p>
+      <h2>Thank You</h2>
+      <p id="successMessage">Your order has been saved in this browser.</p>
+      <a href="collection.html" class="place-order continue-button">CONTINUE SHOPPING</a>
+      <button type="button" class="text-button" id="closeSuccess">Back to checkout</button>
+    </div>
+  </div>
+
+  <script src="checkout.js"></script>
+</body>
+</html>

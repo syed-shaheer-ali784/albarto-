@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALBERTO CLOCKS | Create Account</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+  <div class="gold-dust"></div>
+
+  <!-- Helicopter intro -->
+  <section id="intro" class="intro">
+    <div class="brand">ALBERTO <span>CLOCKS</span></div>
+    <p class="intro-text">A NEW EXPERIENCE AWAITS YOU</p>
+
+    <div class="heli-scene" id="helicopter">
+      <div class="heli">
+        <div class="rotor"></div>
+        <div class="rotor-line"></div>
+        <div class="tail"></div>
+        <div class="tail-fin"></div>
+        <div class="heli-body">
+          <div class="cockpit"></div>
+          <div class="door-line"></div>
+          <div class="gold-mark">A</div>
+        </div>
+        <div class="skid skid-left"></div>
+        <div class="skid skid-right"></div>
+      </div>
+
+      <div class="heli-light"></div>
+    </div>
+
+    <button id="clickMe" class="click-me">
+      <span class="pulse"></span>
+      CLICK ME <span>↗</span>
+    </button>
+
+    <p class="warning">TAP THE HELICOPTER TO CONTINUE</p>
+  </section>
+
+  <!-- Crash flash and smoke -->
+  <div id="flash" class="flash"></div>
+  <div id="smoke" class="smoke">
+    <div class="smoke-cloud cloud1"></div>
+    <div class="smoke-cloud cloud2"></div>
+    <div class="smoke-cloud cloud3"></div>
+    <div class="smoke-cloud cloud4"></div>
+    <div class="smoke-cloud cloud5"></div>
+    <div class="smoke-cloud cloud6"></div>
+    <div class="smoke-cloud cloud7"></div>
+    <div class="smoke-cloud cloud8"></div>
+  </div>
+
+  <!-- Create Account Form -->
+  <main id="signupPanel" class="signup-panel">
+    <div class="form-card">
+      <a class="back-home" href="index.html">← HOME</a>
+
+      <div class="mini-logo">A</div>
+      <p class="eyebrow">WELCOME TO THE ELITE</p>
+      <h1>Create <span>Account</span></h1>
+      <p class="subtitle">Your journey into luxury begins here.</p>
+
+      <form id="signupForm">
+        <label for="fullName">FULL NAME</label>
+        <input id="fullName" type="text" placeholder="Enter your full name" required>
+
+        <label for="email">EMAIL ADDRESS</label>
+        <input id="email" type="email" placeholder="Enter your email" required>
+
+        <label for="password">CREATE PASSWORD</label>
+        <div class="password-wrap">
+          <input id="password" type="password"
+                 placeholder="At least 8 characters" minlength="8" required>
+          <button type="button" class="show-password" data-target="password">SHOW</button>
+        </div>
+
+        <label for="confirmPassword">CONFIRM PASSWORD</label>
+        <div class="password-wrap">
+          <input id="confirmPassword" type="password"
+                 placeholder="Enter password again" required>
+          <button type="button" class="show-password"
+                  data-target="confirmPassword">SHOW</button>
+        </div>
+
+        <label class="terms">
+          <input id="terms" type="checkbox" required>
+          <span>I agree to the terms and conditions.</span>
+        </label>
+
+        <button type="submit" class="create-btn">CREATE ACCOUNT <span>→</span></button>
+        <p id="message" class="message"></p>
+      </form>
+
+      <p class="signin">Already a member? <a href="login.html">Sign in</a></p>
+      <div class="form-footer">ALBERTO CLOCKS · TIMELESS LUXURY</div>
+    </div>
+  </main>
+
+  <script src="signup.js"></script>
+</body>
+</html>

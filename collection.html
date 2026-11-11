@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection | ALBERTO CLOCKS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #d5b16a;
+  --gold-light: #f4dfa7;
+  --black: #080808;
+  --panel: #11110f;
+  --muted: #a8a49a;
+  --line: rgba(213,177,106,.25);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: #f7f3ea;
+  font-family: Inter, sans-serif;
+}
+button { font: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.gold { color: var(--gold); }
+header {
+  height: 78px; padding: 0 6%;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: rgba(8,8,8,.94);
+  position: sticky; top: 0; z-index: 20;
+  backdrop-filter: blur(14px);
+}
+.logo {
+  font: 700 30px "Cormorant Garamond", serif;
+  letter-spacing: 5px; color: var(--gold-light);
+}
+nav { display:flex; align-items:center; gap:26px; font-size:11px; letter-spacing:2px; }
+nav a:hover { color: var(--gold); }
+.cart-pill { color:var(--gold); border:1px solid var(--line); padding:10px 14px; }
+.hero {
+  min-height: 650px; overflow:hidden; position:relative;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:75px 20px 100px;
+  background:
+    radial-gradient(ellipse at center, rgba(126,92,37,.18), transparent 53%),
+    linear-gradient(180deg,#0b0b0a,#080808);
+}
+.hero:before {
+  content:""; position:absolute; width:600px; height:600px;
+  border:1px solid rgba(213,177,106,.09); border-radius:50%;
+  box-shadow:0 0 0 55px rgba(213,177,106,.025),0 0 0 110px rgba(213,177,106,.02);
+}
+.hero-copy { position:relative; z-index:4; }
+.eyebrow { color:var(--gold); letter-spacing:5px; font-size:10px; text-transform:uppercase; }
+h1 {
+  font:500 clamp(45px,7vw,88px)/.98 "Cormorant Garamond",serif;
+  margin:20px 0; letter-spacing:2px;
+}
+.hero-copy p { color:var(--muted); font-size:13px; line-height:1.9; }
+.hero-stage {
+  width:min(90vw,400px); height:300px; position:relative;
+  margin:15px auto 12px; perspective:1000px;
+}
+.hero-watch {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:contain; filter:drop-shadow(0 20px 30px #000);
+  z-index:3; transition:transform .15s linear;
+}
+.explode-part {
+  position:absolute; width:155px; height:155px; left:50%; top:50%;
+  border-radius:50%; border:2px solid var(--gold);
+  transform:translate(-50%,-50%) scale(.45);
+  opacity:0; pointer-events:none;
+  box-shadow:0 0 25px rgba(213,177,106,.2),inset 0 0 22px rgba(213,177,106,.15);
+}
+.explode-part:before,.explode-part:after {
+  content:""; position:absolute; inset:15px;
+  border:2px dashed rgba(244,223,167,.75); border-radius:50%;
+}
+.explode-part:after { inset:35px; border-style:solid; }
+.explode-part:nth-child(2) { width:205px;height:205px;border-style:dashed; }
+.explode-part:nth-child(3) { width:120px;height:120px;border-color:#a67c36; }
+.explode-part:nth-child(4) { width:245px;height:245px;border-style:dotted; }
+.scroll-note { font-size:10px; color:var(--gold); letter-spacing:3px; margin-top:22px; }
+.scroll-note span { display:block; font-size:23px; margin-top:8px; animation:bob 1.5s infinite; }
+@keyframes bob { 50% { transform:translateY(7px); } }
+
+.section { padding:85px 6%; }
+.section-head { text-align:center; margin-bottom:42px; }
+.section-head h2 { font:500 clamp(38px,5vw,58px) "Cormorant Garamond",serif; margin:12px 0; }
+.section-head p { color:var(--muted); font-size:12px; }
+.toolbar { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:24px; }
+.toolbar input {
+  width:min(100%,320px); background:#10100e; color:white;
+  border:1px solid var(--line); padding:13px 15px; outline:none;
+}
+.toolbar input:focus { border-color:var(--gold); }
+#results { font-size:11px; color:var(--muted); }
+.grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px; }
+.watch-card {
+  background:linear-gradient(145deg,#151512,#0c0c0b);
+  border:1px solid rgba(213,177,106,.14);
+  padding:13px; min-width:0; transition:transform .35s,border-color .35s,box-shadow .35s;
+  animation:rise .7s both;
+}
+.watch-card:hover { transform:translateY(-7px); border-color:var(--gold); box-shadow:0 18px 45px #000; }
+@keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+.card-image {
+  background:radial-gradient(circle,#29241a,#10100e 65%);
+  height:230px; position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.card-image img {
+  width:100%; height:100%; object-fit:contain; padding:10px;
+  transition:transform .5s; filter:drop-shadow(0 10px 15px #000);
+}
+.watch-card:hover .card-image img { transform:scale(1.07) rotate(-3deg); }
+.tag { position:absolute; top:10px; left:10px; background:var(--gold); color:#090909; font-size:9px; padding:6px 8px; letter-spacing:1px; }
+.card-info { padding:16px 4px 5px; }
+.category { font-size:9px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; }
+.card-info h3 { font:500 25px "Cormorant Garamond",serif; margin:8px 0; }
+.card-info p { font-size:11px; color:var(--muted); line-height:1.7; min-height:34px; }
+.price { font-size:14px; margin:14px 0; }
+.actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.btn {
+  min-height:40px; padding:10px 7px; font-size:9px; letter-spacing:1px;
+  border:1px solid var(--gold); background:transparent; color:var(--gold);
+  transition:.25s;
+}
+.btn.primary { background:var(--gold); color:#0a0a09; font-weight:700; }
+.btn:hover { background:var(--gold-light); color:#090909; border-color:var(--gold-light); }
+
+.toast {
+  position:fixed; right:22px; bottom:22px; z-index:100;
+  width:min(360px,calc(100% - 44px)); padding:18px;
+  background:#171711; border:1px solid var(--gold);
+  box-shadow:0 15px 60px #000;
+  display:flex; gap:13px; align-items:center;
+  transform:translateY(130%); opacity:0; transition:.4s;
+}
+.toast.show { transform:translateY(0); opacity:1; }
+.toast-icon { font-size:24px; color:var(--gold); }
+.toast strong { display:block; font:500 22px "Cormorant Garamond",serif; }
+.toast small { display:block; color:var(--muted); margin-top:5px; }
+
+.modal {
+  position:fixed; inset:0; z-index:80; padding:25px;
+  background:rgba(0,0,0,.84); backdrop-filter:blur(10px);
+  display:none; align-items:center; justify-content:center;
+}
+.modal.open { display:flex; animation:fadeIn .3s; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.modal-box {
+  width:min(1000px,100%); max-height:90vh; overflow:auto;
+  background:linear-gradient(140deg,#191914,#090909);
+  border:1px solid var(--line); position:relative;
+  display:grid; grid-template-columns:1fr 1fr;
+}
+.close {
+  position:absolute; right:15px; top:12px; z-index:5;
+  background:#111; color:var(--gold); border:1px solid var(--line);
+  width:40px; height:40px; font-size:23px;
+}
+.modal-visual {
+  min-height:450px; padding:30px; display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(circle,#29241a,#0c0c0b 70%);
+  overflow:hidden; perspective:1000px; position:relative;
+}
+.modal-visual img {
+  width:100%; max-height:470px; object-fit:contain;
+  transform-style:preserve-3d; cursor:grab; user-select:none;
+  filter:drop-shadow(0 25px 30px #000);
+  transition:filter .3s;
+}
+.modal-visual img:active { cursor:grabbing; }
+.drag-tip { position:absolute; bottom:15px; color:#c2b99f; font-size:9px; letter-spacing:2px; }
+.modal-details { padding:65px 38px 35px; }
+.modal-details h2 { font:500 45px/1.05 "Cormorant Garamond",serif; margin:15px 0; }
+.modal-details p { color:#b4b0a5; font-size:12px; line-height:1.9; }
+.modal-price { font-size:22px; color:var(--gold); margin:22px 0; }
+.specs { border-top:1px solid var(--line); margin:20px 0; }
+.spec { display:flex; justify-content:space-between; gap:15px; padding:12px 0; border-bottom:1px solid rgba(213,177,106,.12); font-size:11px; }
+.spec span:first-child { color:var(--muted); }
+.modal-buttons { display:flex; gap:10px; margin-top:24px; }
+.modal-buttons .btn { flex:1; }
+
+footer { border-top:1px solid var(--line); padding:30px 6%; display:flex; justify-content:space-between; gap:15px; color:var(--muted); font-size:10px; letter-spacing:1px; }
+
+@media(max-width:1000px) {
+  .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  nav { gap:14px; }
+}
+@media(max-width:700px) {
+  header { height:auto; min-height:72px; padding:15px 5%; flex-wrap:wrap; gap:13px; }
+  .logo { font-size:25px; }
+  nav { width:100%; justify-content:space-between; gap:8px; font-size:9px; }
+  .hero { min-height:570px; }
+  .hero-stage { height:260px; }
+  .section { padding:60px 4%; }
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .card-image { height:180px; }
+  .card-info h3 { font-size:22px; }
+  .card-info p { font-size:10px; }
+  .actions { grid-template-columns:1fr; }
+  .btn { font-size:9px; }
+  .toolbar { align-items:flex-start; flex-direction:column; }
+  .modal { padding:10px; }
+  .modal-box { grid-template-columns:1fr; max-height:94vh; }
+  .modal-visual { min-height:280px; height:300px; padding:20px; }
+  .modal-visual img { max-height:260px; }
+  .modal-details { padding:28px 23px; }
+  .modal-details h2 { font-size:37px; }
+  .close { position:sticky; float:right; top:8px; margin-bottom:-45px; }
+  footer { flex-direction:column; }
+}
+@media(max-width:380px) {
+  .grid { grid-template-columns:1fr; }
+  .card-image { height:260px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*:before,*:after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a class="logo" href="index.html">ALBERTO</a>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="collection.html" class="gold">COLLECTION</a>
+    <a href="about.html">ABOUT</a>
+    <a href="login.html">ACCOUNT</a>
+    <a href="cart.html" class="cart-pill">CART <span id="cartCount">0</span></a>
+    <a href="cart.html">CART</a>
+    <a href="login.html" class="active">login</a>
+    <a href="signup.html">Signup</a>
+    <a href="checkout.html">Checkout</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Precision • Heritage • Excellence</div>
+    <h1>TIME, <span class="gold">REDEFINED.</span></h1>
+    <p>Discover the art of fine watchmaking.<br>Every second tells a story of timeless luxury.</p>
+
+    <div class="hero-stage" id="heroStage" aria-label="Animated luxury watch">
+      <div class="explode-part"></div>
+      <div class="explode-part"></div>
+      <div class="explode-part"></div>
+      <div class="explode-part"></div>
+      <img class="hero-watch"
+        src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=85"
+        alt="Luxury wristwatch" id="heroWatch">
+    </div>
+
+    <div class="scroll-note">SCROLL TO EXPLORE THE MECHANISM <span>↓</span></div>
+  </div>
+</section>
+
+<section class="section" id="collection">
+  <div class="section-head">
+    <div class="eyebrow">THE ALBERTO SELECTION</div>
+    <h2>Our <span class="gold">Collection</span></h2>
+    <p>Ten distinctive designs. One timeless standard.</p>
+  </div>
+
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search watches..." aria-label="Search watches">
+    <span id="results">10 watches</span>
+  </div>
+
+  <div class="grid" id="watchGrid"></div>
+</section>
+
+<footer>
+  <span class="logo">ALBERTO</span>
+  <span>CRAFTED FOR THOSE WHO VALUE TIME.</span>
+  <span>© <span id="year"></span> ALBERTO CLOCKS</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <div class="toast-icon">✓</div>
+  <div><strong id="toastTitle">Added to Cart</strong><small id="toastText">Your selection has been added.</small></div>
+</div>
+
+<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Close details">×</button>
+    <div class="modal-visual" id="modalVisual">
+      <img id="modalImage" src="" alt="Watch product" draggable="false">
+      <div class="drag-tip">DRAG TO ROTATE • SCROLL TO ZOOM</div>
+    </div>
+    <div class="modal-details">
+      <div class="eyebrow" id="modalCategory">THE COLLECTION</div>
+      <h2 id="modalName">The Heritage</h2>
+      <p id="modalDescription"></p>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="specs">
+        <div class="spec"><span>Movement</span><span id="modalMovement"></span></div>
+        <div class="spec"><span>Case</span><span id="modalCase"></span></div>
+        <div class="spec"><span>Strap</span><span id="modalStrap"></span></div>
+        <div class="spec"><span>Collection</span><span>ALBERTO SIGNATURE</span></div>
+      </div>
+      <div class="modal-buttons">
+        <button class="btn primary" id="modalAdd">ADD TO CART</button>
+        <button class="btn" id="resetView">RESET VIEW</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const watches = [
+  {
+    id:1, name:"The Heritage", category:"Classic Collection",
+    price:18500, tag:"BESTSELLER",
+    image:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=85",
+    description:"A timeless expression of elegance. Refined detailing and a sophisticated silhouette make this piece a lasting classic.",
+    movement:"Automatic style", case:"Polished steel", strap:"Premium leather"
+  },
+  {
+    id:2, name:"Midnight Gold", category:"Signature Collection",
+    price:22500, tag:"SIGNATURE",
+    image:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85",
+    description:"Dark tones meet golden accents in a bold design inspired by the quiet elegance of midnight.",
+    movement:"Quartz style", case:"Gold-tone finish", strap:"Classic bracelet"
+  },
+  {
+    id:3, name:"The Monarch", category:"Royal Collection",
+    price:28900, tag:"PREMIUM",
+    image:"https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=85",
+    description:"A confident, refined timepiece with a distinctive presence for formal occasions and everyday sophistication.",
+    movement:"Automatic style", case:"Stainless steel", strap:"Premium bracelet"
+  },
+  {
+    id:4, name:"Ocean Elite", category:"Sport Collection",
+    price:19900, tag:"NEW ARRIVAL",
+    image:"https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=85",
+    description:"Inspired by deep ocean tones, this design brings modern character and versatile style to your wrist.",
+    movement:"Quartz style", case:"Steel finish", strap:"Sport bracelet"
+  },
+  {
+    id:5, name:"Golden Hour", category:"Signature Collection",
+    price:24500, tag:"LIMITED STYLE",
+    image:"https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=900&q=85",
+    description:"Warm metallic tones and a clean profile create a striking statement of understated luxury.",
+    movement:"Quartz style", case:"Gold-tone finish", strap:"Metal bracelet"
+  },
+  {
+    id:6, name:"The Executive", category:"Business Collection",
+    price:21500, tag:"ELEGANT",
+    image:"https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&w=900&q=85",
+    description:"Designed for a polished look, with balanced proportions that transition effortlessly from office to evening.",
+    movement:"Quartz style", case:"Polished steel", strap:"Leather style"
+  },
+  {
+    id:7, name:"Noir Prestige", category:"Noir Collection",
+    price:26500, tag:"NOIR SERIES",
+    image:"https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=900&q=85",
+    description:"A dramatic dark finish gives this contemporary design a bold identity and a quietly luxurious feel.",
+    movement:"Automatic style", case:"Black finish", strap:"Dark bracelet"
+  },
+  {
+    id:8, name:"Royal Chrono", category:"Sport Collection",
+    price:31500, tag:"CHRONO STYLE",
+    image:"https://images.unsplash.com/photo-1548171915-e79a380a2a4b?auto=format&fit=crop&w=900&q=85",
+    description:"Sport-inspired details and a powerful profile bring energy to this modern statement piece.",
+    movement:"Chronograph style", case:"Steel finish", strap:"Metal bracelet"
+  },
+  {
+    id:9, name:"Silver Legacy", category:"Classic Collection",
+    price:17900, tag:"TIMELESS",
+    image:"https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=900&q=85",
+    description:"A clean silver aesthetic and timeless proportions make this an easy choice for a sophisticated collection.",
+    movement:"Quartz style", case:"Silver-tone finish", strap:"Classic bracelet"
+  },
+  {
+    id:10, name:"Imperial Black", category:"Royal Collection",
+    price:33900, tag:"ICON SERIES",
+    image:"https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=900&q=85",
+    description:"A bold final statement: a contemporary dark design created for those who appreciate distinctive style.",
+    movement:"Automatic style", case:"Dark steel finish", strap:"Premium bracelet"
+  }
+];
+
+const money = n => "Rs. " + n.toLocaleString("en-PK");
+const grid = document.getElementById("watchGrid");
+const cartCount = document.getElementById("cartCount");
+const toast = document.getElementById("toast");
+let cart = JSON.parse(localStorage.getItem("albertoCart") || "[]");
+let activeWatch = null;
+let toastTimer;
+let rotationX = 0, rotationY = 0, zoom = 1;
+let dragging = false, startX = 0, startY = 0, startRotX = 0, startRotY = 0;
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function renderWatches(list = watches) {
+  grid.innerHTML = "";
+  document.getElementById("results").textContent = `${list.length} watches`;
+
+  if (!list.length) {
+    grid.innerHTML = '<p style="color:#c9b98f;grid-column:1/-1;text-align:center;padding:50px">No watches found. Try another search.</p>';
+    return;
+  }
+
+  list.forEach((watch, index) => {
+    const card = document.createElement("article");
+    card.className = "watch-card";
+    card.style.animationDelay = `${index * 55}ms`;
+    card.innerHTML = `
+      <div class="card-image">
+        <span class="tag">${watch.tag}</span>
+        <img src="${watch.image}" alt="${watch.name}" loading="lazy">
+      </div>
+      <div class="card-info">
+        <div class="category">${watch.category}</div>
+        <h3>${watch.name}</h3>
+        <p>${watch.description}</p>
+        <div class="price">${money(watch.price)}</div>
+        <div class="actions">
+          <button class="btn primary add-btn" data-id="${watch.id}">ADD TO CART</button>
+          <button class="btn detail-btn" data-id="${watch.id}">VIEW DETAILS</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function showToast(title, message) {
+  document.getElementById("toastTitle").textContent = title;
+  document.getElementById("toastText").textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+}
+
+function addToCart(id) {
+  const watch = watches.find(w => w.id === Number(id));
+  if (!watch) return;
+  cart.push(watch);
+  localStorage.setItem("albertoCart", JSON.stringify(cart));
+  cartCount.textContent = cart.length;
+  showToast("Added to Cart ✓", `${watch.name} · ${money(watch.price)}`);
+}
+
+grid.addEventListener("click", event => {
+  const add = event.target.closest(".add-btn");
+  const detail = event.target.closest(".detail-btn");
+  if (add) addToCart(add.dataset.id);
+  if (detail) openDetails(detail.dataset.id);
+});
+
+document.getElementById("search").addEventListener("input", event => {
+  const term = event.target.value.trim().toLowerCase();
+  renderWatches(watches.filter(w =>
+    `${w.name} ${w.category} ${w.description}`.toLowerCase().includes(term)
+  ));
+});
+
+const modal = document.getElementById("detailModal");
+const modalImage = document.getElementById("modalImage");
+
+function applyImageTransform() {
+  modalImage.style.transform =
+    `rotateX(${rotationX}deg) rotateY(${rotationY}deg) scale(${zoom})`;
+}
+
+function resetImageView() {
+  rotationX = 0; rotationY = 0; zoom = 1;
+  applyImageTransform();
+}
+
+function openDetails(id) {
+  activeWatch = watches.find(w => w.id === Number(id));
+  if (!activeWatch) return;
+
+  document.getElementById("modalCategory").textContent = activeWatch.category;
+  document.getElementById("modalName").textContent = activeWatch.name;
+  document.getElementById("modalDescription").textContent = activeWatch.description;
+  document.getElementById("modalPrice").textContent = money(activeWatch.price);
+  document.getElementById("modalMovement").textContent = activeWatch.movement;
+  document.getElementById("modalCase").textContent = activeWatch.case;
+  document.getElementById("modalStrap").textContent = activeWatch.strap;
+  modalImage.src = activeWatch.image;
+  modalImage.alt = activeWatch.name;
+  resetImageView();
+
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+  document.getElementById("closeModal").focus();
+}
+
+function closeDetails() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+  activeWatch = null;
+}
+
+document.getElementById("closeModal").addEventListener("click", closeDetails);
+document.getElementById("resetView").addEventListener("click", resetImageView);
+document.getElementById("modalAdd").addEventListener("click", () => {
+  if (activeWatch) addToCart(activeWatch.id);
+});
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) closeDetails();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && modal.classList.contains("open")) closeDetails();
+});
+
+
+const modalVisual = document.getElementById("modalVisual");
+
+// Mouse ko move karte hi watch rotate hogi — click ki zaroorat nahi.
+modalVisual.addEventListener("mousemove", (event) => {
+  const rect = modalVisual.getBoundingClientRect();
+
+  const x = (event.clientX - rect.left) / rect.width;
+  const y = (event.clientY - rect.top) / rect.height;
+
+  rotationY = (x - 0.5) * 60;
+  rotationX = (0.5 - y) * 35;
+
+  applyImageTransform();
+});
+
+// Mouse watch se bahar jaye to dheere se seedhi ho jaye.
+modalVisual.addEventListener("mouseleave", () => {
+  rotationX = 0;
+  rotationY = 0;
+  applyImageTransform();
+});
+
+// Mouse wheel se zoom in aur zoom out.
+modalVisual.addEventListener("wheel", (event) => {
+  event.preventDefault();
+
+  zoom = Math.max(
+    0.65,
+    Math.min(2.1, zoom - event.deltaY * 0.001)
+  );
+
+  applyImageTransform();
+}, { passive: false });
+
+const hero = document.getElementById("hero");
+const heroWatch = document.getElementById("heroWatch");
+const parts = [...document.querySelectorAll(".explode-part")];
+let ticking = false;
+
+function updateHeroAnimation() {
+  const rect = hero.getBoundingClientRect();
+  const travel = Math.max(1, hero.offsetHeight - window.innerHeight);
+  const progress = Math.max(0, Math.min(1, -rect.top / travel));
+  const spread = progress * 155;
+
+  heroWatch.style.transform =
+    `translateY(${-progress * 28}px) scale(${1 - progress * .16}) rotate(${progress * 5}deg)`;
+
+  parts.forEach((part, index) => {
+    const direction = index % 2 === 0 ? 1 : -1;
+    const distance = spread * (0.5 + index * .22);
+    part.style.opacity = String(Math.max(0, Math.min(1, (progress - .08) * 2.4)));
+    part.style.transform =
+      `translate(calc(-50% + ${direction * distance}px), calc(-50% + ${(index % 2 ? -1 : 1) * distance * .45}px)) rotate(${progress * (index + 1) * 100}deg) scale(${.45 + progress * .7})`;
+  });
+  ticking = false;
+}
+
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    requestAnimationFrame(updateHeroAnimation);
+    ticking = true;
+  }
+}, {passive:true});
+
+renderWatches();
+updateHeroAnimation();
+</script>
+</body>
+</html>
