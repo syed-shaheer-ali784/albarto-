@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ALBERTO CLOCKS | Luxury Watches</title>
+
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Three.js module import -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div class="gold-orb"></div>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      ALBERTO
+      <small>C L O C K S</small>
+    </a>
+
+    <button
+      class="burger"
+      id="burger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >☰</button>
+
+    <nav id="nav">
+      <a href="index.html" class="active">HOME</a>
+      <a href="collection.html">COLLECTION</a>
+      <a href="about.html">ABOUT</a>
+      <a href="login.html">LOGIN</a>
+      <a href="cart.html">CART 🛒</a>
+      <a href="signup.html">SIGNUP</a>
+      <a href="checkout.html">CHECKOUT</a>
+      
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- MAIN HERO SECTION -->
+    <section class="hero">
+      <div class="copy">
+        <div class="eyebrow">
+          <span></span> THE ART OF PRECISION
+        </div>
+
+        <h1>
+          Beyond Time.<br>
+          <span>Beyond Ordinary.</span>
+        </h1>
+
+        <p>
+          Discover a new dimension of luxury. Sculpted in gold,
+          designed with precision, and created for those who define
+          their own time.
+        </p>
+
+        <a href="collection.html" class="btn">
+          EXPLORE COLLECTION <span>↗</span>
+        </a>
+
+        <div class="hint">
+          ✦ DRAG TO ROTATE · SCROLL TO ZOOM ✦
+        </div>
+      </div>
+
+      <!-- MAIN 3D WATCH -->
+      <div class="viewer">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit-dot"></div>
+
+        <div id="watch3d"></div>
+
+        <div class="viewer-label">
+          <span>01 / 04</span>
+          ALBERTO · SIGNATURE SERIES
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="section">
+      <div class="section-line"></div>
+
+      <p class="eyebrow">TIMELESS BY DESIGN</p>
+
+      <h2>Luxury Never Fades</h2>
+
+      <p>
+        Precision in every second. Elegance in every detail.
+      </p>
+
+      <a href="collection.html" class="text-link">
+        DISCOVER OUR COLLECTION ↗
+      </a>
+    </section>
+
+    <!-- THREE EXTRA 3D WATCHES -->
+    <section class="featured-watches" id="featured-watches">
+
+      <div class="featured-heading">
+        <p class="eyebrow">THE ALBERTO EDITION</p>
+
+        <h2>
+          TIMELESS <span>MASTERPIECES</span>
+        </h2>
+
+        <p>
+          Three watches. Three expressions of luxury.
+        </p>
+      </div>
+
+      <div class="watch-cards">
+
+        <!-- WATCH 02 -->
+        <article class="watch-card">
+          <div class="mini-watch" id="watch3d-one"></div>
+
+          <div class="watch-info">
+            <p class="watch-number">02 / 04</p>
+            <h3>The Heritage</h3>
+            <p class="watch-description">
+              Classic gold detailing with a deep black dial.
+            </p>
+            <a href="collection.html" class="text-link">
+              DISCOVER WATCH ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- WATCH 03 -->
+        <article class="watch-card">
+          <div class="mini-watch" id="watch3d-two"></div>
+
+          <div class="watch-info">
+            <p class="watch-number">03 / 04</p>
+            <h3>The Sovereign</h3>
+            <p class="watch-description">
+              A refined metallic look with timeless character.
+            </p>
+            <a href="collection.html" class="text-link">
+              DISCOVER WATCH ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- WATCH 04 -->
+        <article class="watch-card">
+          <div class="mini-watch" id="watch3d-three"></div>
+
+          <div class="watch-info">
+            <p class="watch-number">04 / 04</p>
+            <h3>The Evergreen</h3>
+            <p class="watch-description">
+              Dark elegance inspired by modern luxury.
+            </p>
+            <a href="collection.html" class="text-link">
+              DISCOVER WATCH ↗
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="interaction-note">
+        DRAG TO ROTATE · SCROLL TO ZOOM
+      </p>
+
+    </section>
+
+    <!-- FINAL CALL TO ACTION -->
+    <section class="section final-section">
+      <div class="section-line"></div>
+
+      <p class="eyebrow">YOUR TIME. YOUR LEGACY.</p>
+
+      <h2>Make Every Second Count</h2>
+
+      <p>
+        Discover the ALBERTO collection and find your signature style.
+      </p>
+
+      <a href="collection.html" class="btn">
+        EXPLORE ALL WATCHES <span>↗</span>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2026 ALBERTO CLOCKS · CRAFTED FOR TIMELESS ELEGANCE
+  </footer>
+
+  <!-- Load the 3D watch code -->
+  <script type="module" src="index.js"></script>
+</body>
+</html>
